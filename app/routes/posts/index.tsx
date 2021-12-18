@@ -1,26 +1,7 @@
-import { useLoaderData } from "remix";
+import { useLoaderData, Link } from "remix";
+import { getPosts, Post } from "~/post";
 
-export const loader = () => {
-  return [
-    {
-      slug: 'first-post',
-      title: 'first post title',
-    },
-    {
-      slug: 'second-post',
-      title: 'second post title',
-    },
-    {
-      slug: 'third-post',
-      title: 'third post title',
-    },
-  ];
-};
-
-type Post = {
-  slug: string;
-  title: string;
-};
+export const loader = () => getPosts();
 
 const Posts = () => {
   const posts = useLoaderData<Post[]>();
@@ -30,7 +11,9 @@ const Posts = () => {
       <ul>
         {
           posts.map(post => (
-            <li key={post.slug}>{post.title}</li>
+            <li key={post.slug}>
+              <Link to={post.slug}>{post.title}</Link>
+            </li>
           ))
         }
       </ul>
