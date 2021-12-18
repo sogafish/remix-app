@@ -5,7 +5,6 @@ export const loader = () => getPosts();
 
 const Posts = () => {
   const posts = useLoaderData<Post[]>();
-
   return (
     <div>
       <h1>this is Posts</h1>

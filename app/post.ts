@@ -24,6 +24,7 @@ export const getPosts = async () => {
       const filePath = path.join(postsPath, fileName);
       const file = await fs.readFile(filePath);
       const stringifiedFile = file.toString();
+
       const { attributes } = parseFrontMatter<PostMarkdownAttributes>(stringifiedFile);
       invariant(
         isValidPostAttributes(attributes),
@@ -41,11 +42,14 @@ export const getPosts = async () => {
 export const getPost = async (slug: string) => {
   const filepath = path.join(postsPath, slug + ".md");
   const file = await fs.readFile(filepath);
-  const { attributes } = parseFrontMatter(file.toString());
+  const stringifiedFile = file.toString();
+
+  const { attributes } = parseFrontMatter(stringifiedFile);
   invariant(
     isValidPostAttributes(attributes),
     `Post ${filepath} is missing attributes`
   );
+
   return { slug, title: attributes.title };
 };
 
