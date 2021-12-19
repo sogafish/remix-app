@@ -1,7 +1,14 @@
 import { Link, useLoaderData } from 'remix';
 import { getPosts, Post } from '~/post';
+import adminStyles from '~/styles/admin.css';
 
 export const loader = () => getPosts();
+export const links = () => [
+  {
+    rel: 'stylesheet',
+    href: adminStyles,
+  },
+];
 
 const Admin = () => {
   const posts = useLoaderData<Post[]>();
