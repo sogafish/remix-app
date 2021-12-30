@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from 'remix';
+import { Outlet, Link, useLoaderData } from 'remix';
 import { getPosts, Post } from '~/post';
 import adminStyles from '~/styles/admin.css';
 
@@ -29,7 +29,9 @@ const Admin = () => {
           }
         </ul>
       </nav>
-      <main></main>
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 };
